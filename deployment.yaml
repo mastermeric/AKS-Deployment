@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: website
+  name: springbootrestapi
   labels:
-    app: website
+    app: springbootrestapi
 spec:
-  replicas: 30
+  replicas: 2
   selector:
     matchLabels:
-      app: website
+      app: springbootrestapi
   template:
     metadata:
       labels:
-        app: website
+        app: springbootrestapi
     spec:
       containers:
-      - name: website
-        image: <your image here><sua imagem aqui>
+      - name: springbootrestapi
+        image: webapi4qrcode.azurecr.io/springbootrestapi:latest
         ports:
-        - containerPort: 8089
+        - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: website
+  name: springbootrestapi
 spec:
   selector:
-    app: website
+    app: springbootrestapi
   ports:
-    - port: 8089
-      targetPort: 8089
+    - port: 8080
+      targetPort: 8080
   type: LoadBalancer
